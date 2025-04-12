@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sporti Yt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-indigo-600">Sporti Yt</h1>
+      <nav class="space-x-6">
+        <a href="#" class="hover:text-indigo-600">Home</a>
+        <a href="#" class="hover:text-indigo-600">Categories</a>
+        <a href="#" class="hover:text-indigo-600">Deals</a>
+        <a href="#" class="hover:text-indigo-600">Cart</a>
+        <a href="#" class="hover:text-indigo-600">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <main class="flex max-w-7xl mx-auto mt-6 px-4 gap-6">
+
+    <!-- Sidebar Categories -->
+    <aside class="hidden md:block w-1/4">
+      <div class="bg-white rounded shadow p-4">
+        <h3 class="font-bold text-lg mb-4">Categories</h3>
+        <ul class="space-y-2">
+          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Football')">Football</li>
+          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Fitness')">Fitness</li>
+          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Basketball')">Basketball</li>
+          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Tennis')">Tennis</li>
+          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Men')">Men</li>
+          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Women')">Women</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Content Area -->
+    <section class="w-full md:w-3/4">
+      <!-- Hero Section -->
+      <section class="hero-section text-white text-center py-16 rounded mb-8">
+        <h2 class="text-4xl font-bold mb-4">Welcome to Sporti Yt!</h2>
+        <p class="text-lg mb-6">Shop your favorite sportswear and gear</p>
+        <a href="#" class="bg-white text-indigo-600 px-6 py-2 rounded font-semibold">Shop Now</a>
+      </section>
+      
+
+      <!-- Products Section -->
+      <section>
+        <h3 class="text-2xl font-bold mb-6">Featured Products</h3>
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- JS will inject products here -->
+        </div>
+      </section>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <h5 class="font-bold mb-2">About</h5>
+        <p class="text-sm">Sporti Yt is your destination for premium sports products.</p>
+      </div>
+      <div>
+        <h5 class="font-bold mb-2">Quick Links</h5>
+        <ul class="text-sm space-y-1">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">Deals</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-bold mb-2">Follow Us</h5>
+        <p class="text-sm">Instagram | Facebook | Twitter</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
