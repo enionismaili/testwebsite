@@ -11,21 +11,34 @@ let modalOpenTriggeredByClick = false;
 function renderProducts(filtered = products) {
   const grid = document.getElementById("productGrid");
   grid.innerHTML = "";
+
   filtered.forEach((product) => {
     const card = document.createElement("div");
     card.className = "product-card relative cursor-pointer";
-    card.onclick = () => {
+
+    // Modal open only on card click (not button)
+    card.addEventListener("click", () => {
       modalOpenTriggeredByClick = true;
       openModal(product);
       modalOpenTriggeredByClick = false;
-    };
+    });
+
     card.innerHTML = `
-    <span class="tag">${product.tag}</span>
-    <img src="${product.image}" alt="${product.name}" />
-    <h4 class="font-semibold">${product.name}</h4>
-    <p class="text-indigo-600">${product.price}</p>
-    <button onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</button>
-  `;
+      <span class="tag">${product.tag}</span>
+      <img src="${product.image}" alt="${product.name}" />
+      <h4 class="font-semibold">${product.name}</h4>
+      <p class="text-indigo-600">${product.price}</p>
+      <button class="add-to-cart-btn mt-2 px-3 py-1 bg-indigo-600 text-white text-sm rounded hover:bg-indigo-700">
+        Add to Cart
+      </button>
+    `;
+
+    // Prevent modal from opening when clicking the button
+    const btn = card.querySelector(".add-to-cart-btn");
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation(); // 🚫 stop modal from opening
+      addToCart(product);
+    });
 
     grid.appendChild(card);
   });
@@ -62,13 +75,15 @@ toggleBtn?.addEventListener("click", () => {
   toggleBtn.textContent = document.body.classList.contains("dark") ? "Light" : "Dark";
 });
 
-
+// Cart functionality
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function updateCartCount() {
   const countSpan = document.getElementById("cartCount");
-  const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
-  countSpan.textContent = `(${totalCount})`;
+  if (countSpan) {
+    const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+    countSpan.textContent = `(${totalCount})`;
+  }
 }
 
 function addToCart(product) {
@@ -82,7 +97,6 @@ function addToCart(product) {
   updateCartCount();
 }
 
-
 // Initial render
 renderProducts();
-updateCartCount(); // show cart count when page loads
+updateCartCount();
