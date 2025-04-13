@@ -20,12 +20,13 @@ function renderProducts(filtered = products) {
       modalOpenTriggeredByClick = false;
     };
     card.innerHTML = `
-      <span class="tag">${product.tag}</span>
-      <img src="${product.image}" alt="${product.name}" />
-      <h4 class="font-semibold">${product.name}</h4>
-      <p class="text-indigo-600">${product.price}</p>
-      <button class="mt-2 px-3 py-1 bg-indigo-600 text-white text-sm rounded hover:bg-indigo-700">Add to Cart</button>
-    `;
+    <span class="tag">${product.tag}</span>
+    <img src="${product.image}" alt="${product.name}" />
+    <h4 class="font-semibold">${product.name}</h4>
+    <p class="text-indigo-600">${product.price}</p>
+    <button onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</button>
+  `;
+
     grid.appendChild(card);
   });
 }
@@ -61,5 +62,27 @@ toggleBtn?.addEventListener("click", () => {
   toggleBtn.textContent = document.body.classList.contains("dark") ? "Light" : "Dark";
 });
 
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function updateCartCount() {
+  const countSpan = document.getElementById("cartCount");
+  const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  countSpan.textContent = `(${totalCount})`;
+}
+
+function addToCart(product) {
+  const existing = cart.find(item => item.name === product.name);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+}
+
+
 // Initial render
 renderProducts();
+updateCartCount(); // show cart count when page loads

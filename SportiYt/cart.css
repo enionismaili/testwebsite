@@ -1,0 +1,29 @@
+body {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  main {
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  
+  #cartContainer div {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 0;
+  }
+  
+  #cartTotal {
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  
+  button {
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
+  
