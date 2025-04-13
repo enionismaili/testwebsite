@@ -1,4 +1,11 @@
 /* Enhanced UI Styles */
+html {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  
+}
 
 body {
   scroll-behavior: smooth;
@@ -154,80 +161,76 @@ body.dark .sidebar-link:hover {
 }
 
 /* Hero section improvements */
+/* HERO FIXED FULL SCREEN */
+
 .hero-section {
-  position: relative;
-  height: 53rem;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  padding: 3rem;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.hero-overlay {
+.hero-section > div {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem;
+  text-align: center;
+  color: white;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 10;
-  max-width: 900px;
-}
-
-.hero-content h2 {
-  font-size: 3rem;
-  font-weight: bold;
-  line-height: 1.2;
+.hero-section h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
-.hero-content p {
-  margin-top: 1rem;
-  font-size: 1.25rem;
-  color: #e0e7ff;
+@media (min-width: 768px) {
+  .hero-section h2 {
+    font-size: 3rem;
+  }
 }
 
-.hero-content .features {
+.hero-section p {
+  font-size: 1.125rem;
+  color: #cbd5e1;
+}
+
+.hero-section .features {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
-  margin-top: 2rem;
-  color: #dbeafe;
+  gap: 1rem;
+  margin-top: 1.5rem;
   font-weight: 500;
+  font-size: 0.875rem;
 }
 
-.hero-content .features span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(255,255,255,0.1);
+.hero-section .features span {
+  background: rgba(255, 255, 255, 0.1);
   padding: 0.5rem 1rem;
   border-radius: 9999px;
-  font-size: 0.875rem;
   backdrop-filter: blur(4px);
 }
 
-.hero-content a {
-  margin-top: 2.5rem;
-  display: inline-block;
+.hero-section a {
+  margin-top: 2rem;
   background-color: #6366f1;
-  padding: 0.85rem 2rem;
-  border-radius: 0.75rem;
+  padding: 0.75rem 2rem;
   font-weight: 600;
   color: white;
-  font-size: 1.125rem;
-  transition: background-color 0.3s;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  transition: background-color 0.3s ease;
+  display: inline-block;
 }
 
-.hero-content a:hover {
+.hero-section a:hover {
   background-color: #4f46e5;
 }
+
+
 
 footer {
   background-color: #111827;
