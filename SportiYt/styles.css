@@ -1,4 +1,3 @@
-/* General styles */
 html {
   scroll-behavior: smooth;
   margin: 0;
@@ -11,7 +10,6 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* Navbar underline animation */
 nav a {
   position: relative;
   transition: color 0.3s;
@@ -32,7 +30,6 @@ nav a:hover::after {
   width: 100%;
 }
 
-/* Product card enhancements */
 .product-card {
   background-color: white;
   border-radius: 0.75rem;
@@ -90,7 +87,6 @@ body.dark .product-card {
   background-color: #4f46e5;
 }
 
-/* Modal styles */
 #productModal.flex {
   display: flex;
   backdrop-filter: blur(4px);
@@ -102,7 +98,6 @@ body.dark .product-card {
   to { opacity: 1; }
 }
 
-/* Dark mode transition */
 body.dark {
   background-color: #1a202c;
   color: #e2e8f0;
@@ -120,7 +115,6 @@ header nav a:hover {
   color: #a5b4fc;
 }
 
-/* Sidebar adjustments */
 aside {
   border-radius: 0.75rem;
   background-color: #f9fafb;
@@ -155,7 +149,6 @@ body.dark .sidebar-link:hover {
   color: #a5b4fc !important;
 }
 
-/* Modal close button */
 #productModal button {
   font-size: 1.5rem;
   font-weight: bold;
@@ -167,7 +160,6 @@ body.dark .sidebar-link:hover {
   color: #ef4444;
 }
 
-/* Hero section improvements */
 .hero-section {
   height: 100vh;
   overflow: hidden;
@@ -235,7 +227,6 @@ body.dark .sidebar-link:hover {
   background-color: #4f46e5;
 }
 
-/* Footer styles */
 footer {
   background-color: #111827;
   color: #d1d5db;
