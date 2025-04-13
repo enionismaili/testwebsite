@@ -1,87 +1,274 @@
 /* Enhanced UI Styles */
 
 body {
-    scroll-behavior: smooth;
-  }
-  
-  /* Navbar underline animation */
-  nav a {
-    position: relative;
-    transition: color 0.3s;
-  }
-  
-  nav a::after {
-    content: '';
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background-color: #6366f1; /* Tailwind's indigo-500 */
-    transition: width 0.3s ease-in-out;
-  }
-  
-  nav a:hover::after {
-    width: 100%;
-  }
-  
-  /* Product card hover effect */
-  .product-card {
-    background-color: #f3f4f6; /* Tailwind gray-100 */
-    padding: 1rem;
-    border-radius: 0.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-  }
-  
-  .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Tag style */
-  .product-tag {
-    display: inline-block;
-    background-color: #e0f2fe; /* blue-100 */
-    color: #0284c7; /* blue-600 */
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 9999px;
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Hero section enhancement */
-  .hero-section {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .hero-section::before {
-    content: '';
-    position: absolute;
-    width: 200%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 70%);
-    animation: animate-blob 15s infinite linear;
-  }
+  scroll-behavior: smooth;
+  font-family: 'Inter', sans-serif;
+}
 
-  .hero-section {
-    background: 
-      url('images/allsports.png') no-repeat center center,
-      linear-gradient(to right, rgba(126, 91, 239, 0.8), rgba(76, 81, 191, 0.8));
-    background-size: cover;
-  }
-  
-  
-  
-  @keyframes animate-blob {
-    0% { transform: translateX(-50%) scale(1); }
-    50% { transform: translateX(0%) scale(1.05); }
-    100% { transform: translateX(-50%) scale(1); }
-  }
-  
-  /* Sidebar active style */
-  .sidebar-active {
-    font-weight: bold;
-    color: #6366f1;
-  }
+/* Navbar underline animation */
+nav a {
+  position: relative;
+  transition: color 0.3s;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #6366f1;
+  transition: width 0.3s ease-in-out;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Product card enhancements */
+.product-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+body.dark .product-card {
+  background-color: #1f2937;
+  color: #e2e8f0;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  width: 100%;
+  height: 10rem;
+  object-fit: contain;
+  margin-bottom: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.product-card .tag {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background-color: #dbeafe;
+  color: #3b82f6;
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.product-card button {
+  margin-top: 0.75rem;
+  background-color: #6366f1;
+  color: white;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+  background-color: #4f46e5;
+}
+
+
+/* Modal styles */
+#productModal.flex {
+  display: flex;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Dark mode transition */
+body.dark {
+  background-color: #1a202c;
+  color: #e2e8f0;
+}
+
+/* Sidebar adjustments */
+aside {
+  border-radius: 0.75rem;
+  background-color: #f9fafb;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 1.25rem;
+  transition: background-color 0.3s;
+}
+
+body.dark aside {
+  background-color: #1f2937;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar-link:hover {
+  background-color: #e0e7ff;
+  color: #4338ca;
+}
+
+body.dark .sidebar-link {
+  color: #f3f4f6 !important;
+}
+
+body.dark .sidebar-link:hover {
+  background-color: #374151;
+  color: #a5b4fc !important;
+}
+
+/* Modal button */
+#productModal button {
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+#productModal button:hover {
+  transform: scale(1.2);
+  color: #ef4444;
+}
+
+/* Hero section improvements */
+.hero-section {
+  position: relative;
+  height: 53rem;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 3rem;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 900px;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  color: #e0e7ff;
+}
+
+.hero-content .features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  color: #dbeafe;
+  font-weight: 500;
+}
+
+.hero-content .features span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  backdrop-filter: blur(4px);
+}
+
+.hero-content a {
+  margin-top: 2.5rem;
+  display: inline-block;
+  background-color: #6366f1;
+  padding: 0.85rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  color: white;
+  font-size: 1.125rem;
+  transition: background-color 0.3s;
+}
+
+.hero-content a:hover {
+  background-color: #4f46e5;
+}
+
+footer {
+  background-color: #111827;
+  color: #d1d5db;
+}
+
+footer h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+footer input[type="email"] {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: none;
+  outline: none;
+  color: #111827;
+  font-size: 0.875rem;
+}
+
+footer button.subscribe-btn {
+  margin-top: 0.5rem;
+  background-color: #6366f1;
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: background-color 0.3s ease;
+}
+
+footer button.subscribe-btn:hover {
+  background-color: #4f46e5;
+}
+
+footer iframe {
+  border: none;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 10rem;
+}

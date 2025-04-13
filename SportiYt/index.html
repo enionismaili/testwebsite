@@ -1,111 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sporti Yt</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
-</head>
-<body class="bg-gray-100 text-gray-800">
-
-  <!-- Navbar -->
-  <header class="bg-white shadow sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-      <div class="flex justify-between items-center w-full md:w-auto">
-        <h1 class="text-2xl font-bold text-indigo-600">Sporti Yt</h1>
-      </div>
-  
-      <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-        <nav class="flex flex-wrap gap-4 justify-center">
-          <a href="#" class="hover:text-indigo-600">Home</a>
-          <a href="#" class="hover:text-indigo-600">Categories</a>
-          <a href="#" class="hover:text-indigo-600">Deals</a>
-          <a href="#" class="hover:text-indigo-600">Cart</a>
-          <a href="#" class="hover:text-indigo-600">Login</a>
-        </nav>
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Search anything"
-          class="border border-gray-300 rounded px-3 py-1 text-sm w-full md:w-64"
-          oninput="searchProducts()"
-        />
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Layout -->
-  <main class="flex max-w-7xl mx-auto mt-6 px-4 gap-6">
-
-    <!-- Sidebar Categories -->
-    <aside class="hidden md:block w-1/4">
-      <div class="bg-white rounded shadow p-4">
-        <h3 class="font-bold text-lg mb-4">Categories</h3>
-        <ul class="space-y-2">
-          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Football', this)">Football</li>
-          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Fitness', this)">Fitness</li>
-          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Basketball', this)">Basketball</li>
-          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Tennis', this)">Tennis</li>
-          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Men', this)">Men</li>
-          <li class="cursor-pointer hover:text-indigo-600" onclick="filterCategory('Women', this)">Women</li>
-        </ul>
-      </div>
-    </aside>
-
-    <!-- Content Area -->
-    <section class="w-full md:w-3/4">
-      <!-- Hero Section -->
-      <section class="hero-section text-white text-center py-16 rounded mb-8">
-        <h2 class="text-4xl font-bold mb-4">Welcome to Sporti Yt!</h2>
-        <p class="text-lg mb-6">Shop your favorite sportswear and gear</p>
-        <a href="#" class="bg-white text-indigo-600 px-6 py-2 rounded font-semibold">Shop Now</a>
-      </section>
-
-      <!-- Products Section -->
-      <section>
-        <h3 class="text-2xl font-bold mb-6">Featured Products</h3>
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- JS will inject products here -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sporti Yt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="bg-gray-100 text-gray-800 transition-colors duration-300">
+    <!-- Navbar -->
+    <header class="bg-white dark:bg-gray-900 shadow sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="flex justify-between items-center w-full md:w-auto">
+          <h1 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Sporti Yt</h1>
+          <button id="themeToggle" class="md:hidden ml-auto text-sm px-3 py-1 border rounded">Dark</button>
         </div>
-      </section>
+        <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
+          <nav class="flex flex-wrap gap-4 justify-center">
+            <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300">Home</a>
+            <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300">Deals</a>
+            <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300">Track Order</a>
+            <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300">Support</a>
+            <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300">Cart</a>
+            <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300">Login</a>
+          </nav>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search anything"
+            class="border border-gray-300 dark:border-gray-600 rounded px-3 py-1 text-sm w-full md:w-64"
+            oninput="searchProducts()"
+          />
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="background-image: url('images/allsports.png')">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h2>Unleash Your Inner Athlete</h2>
+        <p>Shop premium sports gear designed for champions.</p>
+        <div class="features">
+          <span>⭐ Trusted Quality</span>
+          <span>🚚 Free Delivery</span>
+          <span>🛡️ Secure Checkout</span>
+        </div>
+        <a href="#">Shop Now</a>
+      </div>
     </section>
 
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-8 mt-12">
-    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div>
-        <h5 class="font-bold mb-2">About</h5>
-        <p class="text-sm">Sporti Yt is your destination for premium sports products.</p>
-      </div>
-      <div>
-        <h5 class="font-bold mb-2">Quick Links</h5>
-        <ul class="text-sm space-y-1">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Categories</a></li>
-          <li><a href="#">Deals</a></li>
-          <li><a href="#">Contact</a></li>
+    <!-- Main Layout -->
+    <main class="flex flex-col md:flex-row max-w-7xl mx-auto p-4 gap-4">
+      <!-- Sidebar -->
+      <aside class="w-full md:w-1/4 bg-white dark:bg-gray-800 p-4 rounded shadow">
+        <h3 class="text-lg font-semibold mb-4">Categories</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="sidebar-link">Fitness</a></li>
+          <li><a href="#" class="sidebar-link">Football</a></li>
+          <li><a href="#" class="sidebar-link">Basketball</a></li>
+          <li><a href="#" class="sidebar-link">Tennis</a></li>
+          <li><a href="#" class="sidebar-link">Men</a></li>
+          <li><a href="#" class="sidebar-link">Women</a></li>
         </ul>
-      </div>
-      <div>
-        <h5 class="font-bold mb-2">Follow Us</h5>
-        <p class="text-sm">Instagram | Facebook | Twitter</p>
-      </div>
-    </div>
-  </footer>
-    <!-- Product Detail Modal -->
-    <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
+      </aside>
 
-    <div id="productModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white p-6 rounded shadow-lg z-50 hidden">
-      <button id="closeModalBtn" class="absolute top-2 right-2 text-gray-500 hover:text-black text-xl">&times;</button>
-      <img class="modal-img w-full h-48 object-cover rounded mb-4" src="" alt="Product" />
-      <h3 class="modal-title text-xl font-bold mb-2">Product Name</h3>
-      <p class="modal-price text-indigo-600 font-semibold mb-1"></p>
-      <p class="modal-tag text-sm text-gray-500"></p>
+      <!-- Products Grid -->
+      <section class="w-full md:w-3/4">
+        <h2 class="text-2xl font-semibold mb-4">Featured Products</h2>
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </section>
+      
+      
+    </main>
+
+    <!-- Product Modal Template (Hidden Initially) -->
+    <div id="productModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-900 p-6 rounded shadow max-w-md w-full relative">
+        <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">&times;</button>
+        <img id="modalImage" src="" alt="Product" class="w-full h-48 object-cover mb-4 rounded" />
+        <h3 id="modalTitle" class="text-xl font-bold"></h3>
+        <p id="modalPrice" class="text-lg text-indigo-600 mt-2"></p>
+        <p id="modalDescription" class="text-sm mt-2">Product description goes here.</p>
+      </div>
     </div>
-  
-</body>
+
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-12">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
+        <div>
+          <h4 class="font-bold text-white mb-4">About Sporti Yt</h4>
+          <p class="text-sm leading-relaxed">Sporti Yt brings you premium gear for every athlete. We help you train smarter and perform better with high-quality sportswear and equipment.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-white mb-4">Customer Care</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white">Help Center</a></li>
+            <li><a href="#" class="hover:text-white">Return Policy</a></li>
+            <li><a href="#" class="hover:text-white">Shipping Info</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-white mb-4">Newsletter</h4>
+          <p class="text-sm mb-2">Stay up to date on the latest offers.</p>
+          <input type="email" placeholder="Email address" class="w-full p-2 rounded text-gray-900" />
+          <button class="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm">Subscribe</button>
+        </div>
+        <div>
+          <h4 class="font-bold text-white mb-4">Visit Us</h4>
+          <iframe
+            class="w-full h-40 rounded"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.1751940282166!2d21.159185515782896!3d42.66291347916744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ee44d7b0c2d%3A0xfafad28dd4e4e2bb!2sPristina!5e0!3m2!1sen!2s!4v1614334433984!5m2!1sen!2s"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+      <div class="text-center mt-8 text-sm text-gray-500">© 2025 Sporti Yt. All rights reserved.</div>
+    </footer>
+    
+    
+  </body>
 </html>
