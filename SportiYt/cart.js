@@ -24,7 +24,11 @@ function renderCart() {
         <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded" />
         <div>
           <h4 class="font-semibold">${item.name}</h4>
-          <p class="text-sm text-gray-500">Quantity: ${item.quantity}</p>
+          <p class="text-sm text-gray-500 flex items-center gap-2">
+            <button onclick="decreaseQuantity('${item.name}')" class="bg-gray-200 px-2 rounded hover:bg-gray-300">−</button>
+            ${item.quantity}
+            <button onclick="increaseQuantity('${item.name}')" class="bg-gray-200 px-2 rounded hover:bg-gray-300">+</button>
+          </p>
         </div>
       </div>
       <div class="flex items-center gap-4">
@@ -59,6 +63,26 @@ function clearCart() {
 function checkout() {
   alert("Thank you for your purchase! This is a demo checkout.");
   clearCart();
+}
+
+function increaseQuantity(name) {
+  const item = cart.find(p => p.name === name);
+  if (item) item.quantity += 1;
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  renderCart();
+}
+
+function decreaseQuantity(name) {
+  const item = cart.find(p => p.name === name);
+  if (item && item.quantity > 1) {
+    item.quantity -= 1;
+  } else {
+    cart = cart.filter(p => p.name !== name);
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  renderCart();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
