@@ -1,10 +1,62 @@
 const products = [
-  { name: "Football Shoes", category: "Football", price: "$49.99", tag: "New", image: "images/football_shoes.png" },
-  { name: "Yoga Mat", category: "Fitness", price: "$19.99", tag: "-20%", image: "images/yoga_mat.png" },
-  { name: "Basketball", category: "Basketball", price: "$29.99", tag: "Bestseller", image: "images/wearings.png" },
-  { name: "Tennis Racket", category: "Tennis", price: "$59.99", tag: "Hot", image: "images/tennis_racket.png" },
-  { name: "Men's Running Shorts", category: "Men", price: "$15.99", tag: "New", image: "images/fitness gear.png" }
+  {
+    name: "Yoga Mat",
+    slug: "yoga-mat",
+    category: "Fitness",
+    price: "$19.99",
+    tag: "-20%",
+    image: "images/yoga_mat.png"
+  },
+  {
+    name: "Basketball",
+    slug: "basketball",
+    category: "Basketball",
+    price: "$29.99",
+    tag: "Bestseller",
+    image: "images/wearings.png"
+  },
+  {
+    name: "Football Shoes",
+    slug: "football-shoes",
+    category: "Football",
+    price: "$49.99",
+    tag: "New",
+    image: "images/football_shoes.png"
+  },
+  {
+    name: "Men's Running Shorts",
+    slug: "mens-running-shorts",
+    category: "Men",
+    price: "$15.99",
+    tag: "New",
+    image: "images/fitness gear.png"
+  },
+  {
+    name: "Tennis Racket",
+    slug: "tennis-racket",
+    category: "Tennis",
+    price: "$59.99",
+    tag: "Hot",
+    image: "images/tennis_racket.png"
+  },
+  {
+    name: "Water Bottle",
+    slug: "water-bottle",
+    category: "Accessories",
+    price: "$9.99",
+    tag: "Popular",
+    image: "images/watter_bottle.png"
+  },
+  {
+    name: "Basic Jersey",
+    slug: "jersey",
+    category: "Men",
+    price: "$24.99",
+    tag: "Trending",
+    image: "images/basic_jersey.png"
+  }
 ];
+
 
 let modalOpenTriggeredByClick = false;
 
@@ -97,6 +149,51 @@ function addToCart(product) {
   updateCartCount();
 }
 
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slider .slide');
+
+function showNextSlide() {
+  // Remove active + reset animations
+  slides[currentSlide].classList.remove('active');
+  const texts = slides[currentSlide].querySelectorAll('.fade-in');
+  texts.forEach(el => el.style.animation = 'none'); // Reset animation
+
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+
+  // Trigger animation after short delay
+  const newTexts = slides[currentSlide].querySelectorAll('.fade-in');
+  newTexts.forEach(el => {
+    el.style.animation = 'none';
+    el.offsetHeight; // Trigger reflow
+    el.style.animation = '';
+  });
+}
+
+setInterval(showNextSlide, 5000);
+
+
+function renderScrollingProducts() {
+  const track = document.querySelector(".product-track");
+  if (!track) return;
+
+  // Add two rows (for looping)
+  const fullRow = products.map(product => `
+    <a href="product.html?id=${product.slug}" class="product-item">
+      <img src="${product.image}" alt="${product.name}" />
+      <h4 class="product-name">${product.name}</h4>
+      <p class="product-price">${product.price}</p>
+    </a>
+  `).join("");
+
+  // Set innerHTML with duplicated row
+  track.innerHTML = fullRow + fullRow;
+}
+
+
+
+
 // Initial render
 renderProducts();
 updateCartCount();
+renderScrollingProducts();

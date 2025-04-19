@@ -1,164 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sporti Yt</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-bG3V3zTIaK1vOKOS3oU+P3n4JXk6e7z9DRK6G3UCxdRNBnKY1+xw0VIBZoLQh08vC5QfxRg0sE7JxX9nFYbl8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://unpkg.com/phosphor-icons"></script>
 
-  </head>
-  <body class="bg-gray-100 text-gray-800 transition-colors duration-300">
-    <!-- Navbar -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-black/20 backdrop-blur-md text-white transition duration-300">
-      <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div class="flex justify-between items-center w-full md:w-auto">
-          <h1 class="text-2xl font-bold text-white dark:text-indigo-400">Sporti Yt</h1>
-          <button id="themeToggle" class="md:hidden ml-auto text-sm px-3 py-1 border rounded text-white border-white">Dark</button>
-        </div>
-        <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-          <nav class="flex flex-wrap gap-4 justify-center">
-            <a href="#" class="text-white hover:text-indigo-300">Home</a>
-            <a href="#" class="text-white hover:text-indigo-300">Deals</a>
-            <a href="#" class="text-white hover:text-indigo-300">Track Order</a>
-            <a href="#" class="text-white hover:text-indigo-300">Support</a>
-            <a href="#" class="text-white hover:text-indigo-300">Login</a>
-            <a href="cart.html" class="text-white relative hover:text-indigo-300">🛒 Cart <span id="cartCount" class="ml-1 font-bold">(0)</span></a>
-          </nav>
-          
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Search anything"
-            class="border border-white bg-transparent text-white placeholder-white rounded px-3 py-1 text-sm w-full md:w-64"
-            oninput="searchProducts()"
-          />
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sporti Yt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-bG3V3zTIaK1vOKOS3oU+P3n4JXk6e7z9DRK6G3UCxdRNBnKY1+xw0VIBZoLQh08vC5QfxRg0sE7JxX9nFYbl8g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://unpkg.com/phosphor-icons"></script>
+
+</head>
+
+<body class="bg-gray-100 text-gray-800 transition-colors duration-300">
+  <header class="fixed top-0 left-0 w-full z-50 bg-black/20 backdrop-blur-md text-white transition duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex justify-between items-center w-full md:w-auto">
+        <h1 class="text-2xl font-bold text-white dark:text-indigo-400">Sporti Yt</h1>
+        <button id="themeToggle"
+          class="md:hidden ml-auto text-sm px-3 py-1 border rounded text-white border-white">Dark</button>
       </div>
-    </header>    
+      <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
+        <nav class="flex flex-wrap gap-4 justify-center">
+          <a href="#" class="text-white hover:text-indigo-300">Home</a>
+          <a href="#" class="text-white hover:text-indigo-300">Deals</a>
+          <a href="#" class="text-white hover:text-indigo-300">Track Order</a>
+          <a href="#" class="text-white hover:text-indigo-300">Support</a>
+          <a href="#" class="text-white hover:text-indigo-300">Login</a>
+          <a href="cart.html" class="text-white relative hover:text-indigo-300">🛒 Cart <span id="cartCount"
+              class="ml-1 font-bold">(0)</span></a>
+        </nav>
 
-    <!-- Hero Section -->
-    <section class="h-screen relative bg-cover bg-center overflow-hidden" style="background-image: url('images/allsports.png')">
-      <div class="absolute inset-0 bg-black/60 flex flex-col justify-center items-center px-4 text-white text-center">
-        <div class="max-w-3xl w-full">
-          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Unleash Your Inner Athlete</h2>
-          <p class="mt-4 text-lg sm:text-xl text-indigo-100">Shop premium sports gear designed for champions.</p>
-          <div class="flex flex-wrap justify-center gap-4 mt-6 text-sm font-medium text-blue-100">
-            <span class="bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">⭐ Trusted Quality</span>
-            <span class="bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">🚚 Free Delivery</span>
-            <span class="bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">🛡️ Secure Checkout</span>
-          </div>
-          <a href="#productGrid" class="inline-block mt-8 bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded text-white text-base font-semibold transition">
-            Shop Now
-          </a>
-        </div>
+        <input type="text" id="searchInput" placeholder="Search anything"
+          class="border border-white bg-transparent text-white placeholder-white rounded px-3 py-1 text-sm w-full md:w-64"
+          oninput="searchProducts()" />
       </div>
-    </section>
-    
-    <!-- Sidebar + Main Content Layout -->
-<div class="flex flex-col md:flex-row w-full">
-  <aside class="md:w-64 w-full bg-white dark:bg-gray-800 p-6 mt-8 rounded-lg shadow-lg ml-4">
-    <ul class="space-y-3">
-      <li>
-        <a href="#" class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-          <img src="images/dumbbell.png" class="w-6 h-6" alt="Fitness Icon">
-          Fitness
-        </a>
-      </li>
-      <li>
-        <a href="#" class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-          <img src="images/soccer-ball.png" class="w-6 h-6" alt="Football Icon">
-          Football
-        </a>
-      </li>
-      <li>
-        <a href="#" class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-          <img src="images/basketball.png" class="w-6 h-6" alt="Basketball Icon">
-          Basketball
-        </a>
-      </li>
-      <li>
-        <a href="#" class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-          <img src="images/tennis.png" class="w-6 h-6" alt="Tennis Icon">
-          Tennis
-        </a>
-      </li>
-      <li>
-        <a href="#" class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-          <img src="images/man.png" class="w-6 h-6" alt="Men Icon">
-          Men
-        </a>
-      </li>
-      <li>
-        <a href="#" class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-          <img src="images/woman.png" class="w-6 h-6" alt="Women Icon">
-          Women
-        </a>
-      </li>
-    </ul>
-  </aside>
-  
-  
-  
-  
-
-  <!-- Main Content -->
-  <main class="flex-1 p-4">
-    <!-- Products Grid -->
-    <h2 class="text-2xl font-semibold mb-4">Featured Products</h2>
-    <div id="productGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
-  </main>
-</div>
+    </div>
+  </header>
 
 
-    <!-- Product Modal Template (Hidden Initially) -->
-    <div id="productModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
-      <div class="bg-white dark:bg-gray-900 p-6 rounded shadow max-w-md w-full relative">
-        <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">&times;</button>
-        <img id="modalImage" src="" alt="Product" class="w-full h-48 object-cover mb-4 rounded" />
-        <h3 id="modalTitle" class="text-xl font-bold"></h3>
-        <p id="modalPrice" class="text-lg text-indigo-600 mt-2"></p>
-        <p id="modalDescription" class="text-sm mt-2">Product description goes here.</p>
+  <!--here is defined the hero section, the images in slides-->
+  <section class="hero-slider">
+    <div class="slide active" style="background-image: url('images/allsports.png');">
+      <div class="overlay"></div>
+      <div class="content">
+        <h1 class="fade-in delay-1">Summer Collection is Here!</h1>
+        <h2 class="fade-in delay-2">Vibrant Styles • Breathable Fabric • Outdoor-Ready</h2>
+        <p class="fade-in delay-3">Get ready to move freely and stay cool with our latest sportswear, perfect for sunny
+          workouts, beach runs, and everything in between.</p>
+        <a href="#" class="hero-button fade-in delay-4">Explore Now</a>
       </div>
     </div>
 
-    <footer class="bg-gray-900 text-gray-300 py-12 mt-12">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4">
-        <div>
-          <h4 class="font-bold text-white mb-4">About Sporti Yt</h4>
-          <p class="text-sm leading-relaxed">Sporti Yt brings you premium gear for every athlete. We help you train smarter and perform better with high-quality sportswear and equipment.</p>
-        </div>
-        <div>
-          <h4 class="font-bold text-white mb-4">Customer Care</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#" class="hover:text-white">Help Center</a></li>
-            <li><a href="#" class="hover:text-white">Return Policy</a></li>
-            <li><a href="#" class="hover:text-white">Shipping Info</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-bold text-white mb-4">Newsletter</h4>
-          <p class="text-sm mb-2">Stay up to date on the latest offers.</p>
-          <input type="email" placeholder="Email address" class="w-full p-2 rounded text-gray-900" />
-          <button class="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm">Subscribe</button>
-        </div>
-        <div>
-          <h4 class="font-bold text-white mb-4">Visit Us</h4>
-          <iframe
-            class="w-full h-40 rounded"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.1751940282166!2d21.159185515782896!3d42.66291347916744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ee44d7b0c2d%3A0xfafad28dd4e4e2bb!2sPristina!5e0!3m2!1sen!2s!4v1614334433984!5m2!1sen!2s"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
+    <div class="slide" style="background-image: url('images/fitness-hero.png');">
+      <div class="overlay"></div>
+      <div class="content">
+        <h1 class="fade-in delay-1">New Arrivals in Training Gear</h1>
+        <h2 class="fade-in delay-2">Durability • Performance • Confidence</h2>
+        <p class="fade-in delay-3">Push your limits with our high-performance training gear, tested by athletes and
+          loved by everyday champions.</p>
+        <a href="#" class="hero-button fade-in delay-4">Shop Training</a>
       </div>
-      <div class="text-center mt-8 text-sm text-gray-500">© 2025 Sporti Yt. All rights reserved.</div>
-    </footer>
-    
-    
-  </body>
+    </div>
+
+    <div class="slide" style="background-image: url('images/allsports1.png');">
+      <div class="overlay"></div>
+      <div class="content">
+        <h1 class="fade-in delay-1">Outdoor Adventure Ready</h1>
+        <h2 class="fade-in delay-2">Explore More • Worry Less</h2>
+        <p class="fade-in delay-3">From hiking trails to mountain biking, discover gear built for adventure that keeps
+          you protected and comfortable anywhere.</p>
+        <a href="#" class="hero-button fade-in delay-4">Browse Gear</a>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="flex flex-col md:flex-row w-full">
+    <aside class="md:w-64 w-full bg-white dark:bg-gray-800 p-6 mt-8 rounded-lg shadow-lg ml-4">
+      <ul class="space-y-3">
+        <li>
+          <a href="#"
+            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+            <img src="images/dumbbell.png" class="w-6 h-6" alt="Fitness Icon">
+            Fitness
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+            <img src="images/soccer-ball.png" class="w-6 h-6" alt="Football Icon">
+            Football
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+            <img src="images/basketball.png" class="w-6 h-6" alt="Basketball Icon">
+            Basketball
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+            <img src="images/tennis.png" class="w-6 h-6" alt="Tennis Icon">
+            Tennis
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+            <img src="images/man.png" class="w-6 h-6" alt="Men Icon">
+            Men
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+            <img src="images/woman.png" class="w-6 h-6" alt="Women Icon">
+            Women
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+
+    <main class="flex-1 p-4">
+      <h2 class="text-2xl font-semibold mb-4">Featured Products</h2>
+      <div id="productGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+    </main>
+  </div>
+
+
+  <div id="productModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white dark:bg-gray-900 p-6 rounded shadow max-w-md w-full relative">
+      <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">&times;</button>
+      <img id="modalImage" src="" alt="Product" class="w-full h-48 object-cover mb-4 rounded" />
+      <h3 id="modalTitle" class="text-xl font-bold"></h3>
+      <p id="modalPrice" class="text-lg text-indigo-600 mt-2"></p>
+      <p id="modalDescription" class="text-sm mt-2">Product description goes here.</p>
+    </div>
+  </div>
+<br><br>
+
+<section class="scrolling-products">
+  <h2 class="scrolling-title">Top Picks This Week</h2>
+  <div class="product-marquee">
+    <div class="product-track">
+
+      <a href="product.html?id=yoga-mat" class="product-item">
+        <img src="images/yoga_mat.png" alt="Yoga Mat" />
+        <h4 class="product-name">Yoga Mat</h4>
+        <p class="product-price">$19.99</p>
+      </a>
+      <a href="product.html?id=basketball" class="product-item">
+        <img src="images/wearings.png" alt="Basketball" />
+        <h4 class="product-name">Basketball</h4>
+        <p class="product-price">$29.99</p>
+      </a>
+      <a href="product.html?id=football-shoes" class="product-item">
+        <img src="images/football_shoes.png" alt="Football Shoes" />
+        <h4 class="product-name">Football Shoes</h4>
+        <p class="product-price">$49.99</p>
+      </a>
+      <a href="product.html?id=mens-running-shorts" class="product-item">
+        <img src="images/fitness gear.png" alt="Men's Running Shorts" />
+        <h4 class="product-name">Men's Running Shorts</h4>
+        <p class="product-price">$15.99</p>
+      </a>
+      <a href="product.html?id=tennis-racket" class="product-item">
+        <img src="images/tennis_racket.png" alt="Tennis Racket" />
+        <h4 class="product-name">Tennis Racket</h4>
+        <p class="product-price">$59.99</p>
+      </a>
+      <a href="product.html?id=water-bottle" class="product-item">
+        <img src="images/watter_bottle.png" alt="Water Bottle" />
+        <h4 class="product-name">Water Bottle</h4>
+        <p class="product-price">$9.99</p>
+      </a>
+      <a href="product.html?id=jersey" class="product-item">
+        <img src="images/basic_jersey.png" alt="Jersey" />
+        <h4 class="product-name">Basic Jersey</h4>
+        <p class="product-price">$24.99</p>
+      </a>
+
+      <a href="product.html?id=yoga-mat" class="product-item">
+        <img src="images/yoga_mat.png" alt="Yoga Mat" />
+        <h4 class="product-name">Yoga Mat</h4>
+        <p class="product-price">$19.99</p>
+      </a>
+      <a href="product.html?id=basketball" class="product-item">
+        <img src="images/wearings.png" alt="Basketball" />
+        <h4 class="product-name">Basketball</h4>
+        <p class="product-price">$29.99</p>
+      </a>
+      <a href="product.html?id=football-shoes" class="product-item">
+        <img src="images/football_shoes.png" alt="Football Shoes" />
+        <h4 class="product-name">Football Shoes</h4>
+        <p class="product-price">$49.99</p>
+      </a>
+      <a href="product.html?id=mens-running-shorts" class="product-item">
+        <img src="images/fitness gear.png" alt="Men's Running Shorts" />
+        <h4 class="product-name">Men's Running Shorts</h4>
+        <p class="product-price">$15.99</p>
+      </a>
+      <a href="product.html?id=water-bottle" class="product-item">
+        <img src="images/watter_bottle.png" alt="Water Bottle" />
+        <h4 class="product-name">Water Bottle</h4>
+        <p class="product-price">$9.99</p>
+      </a>
+      <a href="product.html?id=tennis-racket" class="product-item">
+        <img src="images/tennis_racket.png" alt="Tennis Racket" />
+        <h4 class="product-name">Tennis Racket</h4>
+        <p class="product-price">$59.99</p>
+      </a>
+      <a href="product.html?id=jersey" class="product-item">
+        <img src="images/basic_jersey.png" alt="Jersey" />
+        <h4 class="product-name">Basic Jersey</h4>
+        <p class="product-price">$24.99</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+  <footer class="bg-gray-900 text-gray-300 py-12 mt-12">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4">
+      <div>
+        <h4 class="font-bold text-white mb-4">About Sporti Yt</h4>
+        <p class="text-sm leading-relaxed">Sporti Yt brings you premium gear for every athlete. We help you train
+          smarter and perform better with high-quality sportswear and equipment.</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-4">Customer Care</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white">Help Center</a></li>
+          <li><a href="#" class="hover:text-white">Return Policy</a></li>
+          <li><a href="#" class="hover:text-white">Shipping Info</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-4">Newsletter</h4>
+        <p class="text-sm mb-2">Stay up to date on the latest offers.</p>
+        <input type="email" placeholder="Email address" class="w-full p-2 rounded text-gray-900" />
+        <button class="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm">Subscribe</button>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-4">Visit Us</h4>
+        <iframe class="w-full h-40 rounded"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.1751940282166!2d21.159185515782896!3d42.66291347916744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ee44d7b0c2d%3A0xfafad28dd4e4e2bb!2sPristina!5e0!3m2!1sen!2s!4v1614334433984!5m2!1sen!2s"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+    <div class="text-center mt-8 text-sm text-gray-500">© 2025 Sporti Yt. All rights reserved.</div>
+  </footer>
+
+
+</body>
+
 </html>
