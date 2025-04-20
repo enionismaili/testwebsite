@@ -1,80 +1,28 @@
 const products = [
-  {
-    name: "Yoga Mat",
-    slug: "yoga-mat",
-    category: "Fitness",
-    price: "$19.99",
-    tag: "-20%",
-    image: "images/yoga_mat.png"
-  },
-  {
-    name: "Basketball",
-    slug: "basketball",
-    category: "Basketball",
-    price: "$29.99",
-    tag: "Bestseller",
-    image: "images/wearings.png"
-  },
-  {
-    name: "Football Shoes",
-    slug: "football-shoes",
-    category: "Football",
-    price: "$49.99",
-    tag: "New",
-    image: "images/football_shoes.png"
-  },
-  {
-    name: "Men's Running Shorts",
-    slug: "mens-running-shorts",
-    category: "Men",
-    price: "$15.99",
-    tag: "New",
-    image: "images/fitness gear.png"
-  },
-  {
-    name: "Tennis Racket",
-    slug: "tennis-racket",
-    category: "Tennis",
-    price: "$59.99",
-    tag: "Hot",
-    image: "images/tennis_racket.png"
-  },
-  {
-    name: "Water Bottle",
-    slug: "water-bottle",
-    category: "Accessories",
-    price: "$9.99",
-    tag: "Popular",
-    image: "images/watter_bottle.png"
-  },
-  {
-    name: "Basic Jersey",
-    slug: "jersey",
-    category: "Men",
-    price: "$24.99",
-    tag: "Trending",
-    image: "images/basic_jersey.png"
-  }
+  { name: "Yoga Mat", slug: "yoga-mat", category: "Fitness", price: "$19.99", tag: "-20%", image: "images/yoga_mat.png" },
+  { name: "Basketball", slug: "basketball", category: "Basketball", price: "$29.99", tag: "Bestseller", image: "images/wearings.png" },
+  { name: "Football Shoes", slug: "football-shoes", category: "Football", price: "$49.99", tag: "New", image: "images/football_shoes.png" },
+  { name: "Men's Running Shorts", slug: "mens-running-shorts", category: "Men", price: "$15.99", tag: "New", image: "images/fitness gear.png" },
+  { name: "Tennis Racket", slug: "tennis-racket", category: "Tennis", price: "$59.99", tag: "Hot", image: "images/tennis_racket.png" },
+  { name: "Water Bottle", slug: "water-bottle", category: "Accessories", price: "$9.99", tag: "Popular", image: "images/watter_bottle.png" },
+  { name: "Basic Jersey", slug: "jersey", category: "Men", price: "$24.99", tag: "Trending", image: "images/basic_jersey.png" }
 ];
 
-
 let modalOpenTriggeredByClick = false;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let currentSlide = 0;
 
 function renderProducts(filtered = products) {
   const grid = document.getElementById("productGrid");
   grid.innerHTML = "";
-
-  filtered.forEach((product) => {
+  filtered.forEach(product => {
     const card = document.createElement("div");
     card.className = "product-card relative cursor-pointer";
-
-    // Modal open only on card click (not button)
     card.addEventListener("click", () => {
       modalOpenTriggeredByClick = true;
       openModal(product);
       modalOpenTriggeredByClick = false;
     });
-
     card.innerHTML = `
       <span class="tag">${product.tag}</span>
       <img src="${product.image}" alt="${product.name}" />
@@ -84,27 +32,16 @@ function renderProducts(filtered = products) {
         Add to Cart
       </button>
     `;
-
-    // Prevent modal from opening when clicking the button
-    const btn = card.querySelector(".add-to-cart-btn");
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation(); // 🚫 stop modal from opening
+    card.querySelector(".add-to-cart-btn").addEventListener("click", e => {
+      e.stopPropagation();
       addToCart(product);
     });
-
     grid.appendChild(card);
   });
 }
 
-function searchProducts() {
-  const query = document.getElementById("searchInput").value.toLowerCase();
-  const filtered = products.filter(p => p.name.toLowerCase().includes(query));
-  renderProducts(filtered);
-}
-
 function openModal(product) {
   if (!modalOpenTriggeredByClick) return;
-
   const modal = document.getElementById("productModal");
   modal.classList.remove("hidden");
   modal.classList.add("flex");
@@ -120,110 +57,86 @@ function closeModal() {
   modal.classList.remove("flex");
 }
 
-
-
-// Cart functionality
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
 function updateCartCount() {
-  const countSpan = document.getElementById("cartCount");
-  if (countSpan) {
-    const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
-    countSpan.textContent = `(${totalCount})`;
-  }
+  const span = document.getElementById("cartCount");
+  const total = cart.reduce((acc, item) => acc + item.quantity, 0);
+  span.textContent = `(${total})`;
 }
 
 function addToCart(product) {
-  const existing = cart.find(item => item.name === product.name);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
+  const existing = cart.find(i => i.name === product.name);
+  if (existing) existing.quantity++;
+  else cart.push({ ...product, quantity: 1 });
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartCount();
 }
 
-let currentSlide = 0;
-const slides = document.querySelectorAll('.hero-slider .slide');
-
 function showNextSlide() {
-  // Remove active + reset animations
+  const slides = document.querySelectorAll('.hero-slider .slide');
   slides[currentSlide].classList.remove('active');
-  const texts = slides[currentSlide].querySelectorAll('.fade-in');
-  texts.forEach(el => el.style.animation = 'none'); // Reset animation
-
+  slides[currentSlide].querySelectorAll('.fade-in').forEach(el => el.style.animation = 'none');
   currentSlide = (currentSlide + 1) % slides.length;
   slides[currentSlide].classList.add('active');
-
-  // Trigger animation after short delay
-  const newTexts = slides[currentSlide].querySelectorAll('.fade-in');
-  newTexts.forEach(el => {
+  slides[currentSlide].querySelectorAll('.fade-in').forEach(el => {
     el.style.animation = 'none';
-    el.offsetHeight; // Trigger reflow
+    el.offsetHeight;
     el.style.animation = '';
   });
 }
 
-setInterval(showNextSlide, 5000);
-
-
 function renderScrollingProducts() {
   const track = document.querySelector(".product-track");
   if (!track) return;
-
-  // Add two rows (for looping)
-  const fullRow = products.map(product => `
-    <a href="product.html?id=${product.slug}" class="product-item">
-      <img src="${product.image}" alt="${product.name}" />
-      <h4 class="product-name">${product.name}</h4>
-      <p class="product-price">${product.price}</p>
+  const full = products.map(p => `
+    <a href="product.html?id=${p.slug}" class="product-item">
+      <img src="${p.image}" alt="${p.name}" />
+      <h4 class="product-name">${p.name}</h4>
+      <p class="product-price">${p.price}</p>
     </a>
   `).join("");
-
-  // Set innerHTML with duplicated row
-  track.innerHTML = fullRow + fullRow;
+  track.innerHTML = full + full;
 }
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
-  // Theme toggle
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark");
-    themeIcon.classList.remove("fa-moon");
-    themeIcon.classList.add("fa-sun");
-  }
-
-  themeToggle.addEventListener("click", () => {
-    const isDark = document.body.classList.toggle("dark");
-    themeIcon.classList.toggle("fa-moon", !isDark);
-    themeIcon.classList.toggle("fa-sun", isDark);
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  });
-
-  // Sidebar toggle
-  const sidebar = document.getElementById("mobileSidebar");
-const toggleBtn = document.getElementById("toggleSidebar");
-const closeBtn = document.getElementById("closeSidebar");
-
-toggleBtn?.addEventListener("click", () => {
-  sidebar.classList.remove("-translate-x-full");
-  sidebar.classList.add("translate-x-0");
-});
-
-closeBtn?.addEventListener("click", () => {
-  sidebar.classList.remove("translate-x-0");
-  sidebar.classList.add("-translate-x-full");
-});
-
-
   // Initial UI
   renderProducts();
   updateCartCount();
   renderScrollingProducts();
+  setInterval(showNextSlide, 5000);
+
+  // Theme toggle
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    themeIcon.classList.replace("fa-moon", "fa-sun");
+  }
+  themeToggle.addEventListener("click", () => {
+    const dark = document.body.classList.toggle("dark");
+    themeIcon.classList.replace(dark ? "fa-moon" : "fa-sun", dark ? "fa-sun" : "fa-moon");
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  });
+
+  
+  const header = document.querySelector("header");
+  const sidebar = document.getElementById("mobileSidebar");
+  
+  sidebar.style.top = `${header.getBoundingClientRect().height}px`;
+  
+  window.addEventListener("resize", () => {
+    sidebar.style.top = `${header.getBoundingClientRect().height}px`;
+  });
+
+  document.getElementById("toggleSidebar").addEventListener("click", () => {
+    sidebar.classList.remove("-translate-x-full");
+    sidebar.classList.add("translate-x-0");
+  });
+  
+  document.getElementById("closeSidebar").addEventListener("click", () => {
+    sidebar.classList.remove("translate-x-0");
+    sidebar.classList.add("-translate-x-full");
+  });
+  
+  
+
 });

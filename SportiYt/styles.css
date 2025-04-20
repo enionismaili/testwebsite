@@ -150,7 +150,7 @@ aside {
 /* ============================================ */
 
 .hero-slider {
-  position: relative;
+  position: relative; 
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -398,19 +398,4 @@ body.dark footer input[type="email"] {
   color: #111827;
 }
 
-#mobileSidebar {
-  position: fixed;
-  top: 4.5rem; /* or match your navbar height (e.g., 72px) */
-  left: 0;
-  height: calc(100% - 4.5rem); /* subtract navbar height */
-  width: 16rem; /* or keep your original width */
-  background-color: white;
-  z-index: 50;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-}
 
-body.dark #mobileSidebar {
-  background-color: #1f2937;
-}
