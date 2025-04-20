@@ -2,47 +2,84 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sporti Yt</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    integrity="sha512-bG3V3zTIaK1vOKOS3oU+P3n4JXk6e7z9DRK6G3UCxdRNBnKY1+xw0VIBZoLQh08vC5QfxRg0sE7JxX9nFYbl8g=="
+    <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://unpkg.com/phosphor-icons"></script>
-
 </head>
 
 <body class="bg-gray-100 text-gray-800 transition-colors duration-300">
   <header class="fixed top-0 left-0 w-full z-50 bg-black/20 backdrop-blur-md text-white transition duration-300">
     <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-      <div class="flex justify-between items-center w-full md:w-auto">
+      <!-- Top Bar: Logo + Theme + Menu Icon (Mobile) -->
+      <div class="flex items-center justify-between w-full md:w-auto">
         <h1 class="text-2xl font-bold text-white dark:text-indigo-400">Sporti Yt</h1>
-        <button id="themeToggle"
-          class="md:hidden ml-auto text-sm px-3 py-1 border rounded text-white border-white">Dark</button>
-      </div>
-      <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-        <nav class="flex flex-wrap gap-4 justify-center">
-          <a href="#" class="text-white hover:text-indigo-300">Home</a>
-          <a href="#" class="text-white hover:text-indigo-300">Deals</a>
-          <a href="#" class="text-white hover:text-indigo-300">Track Order</a>
-          <a href="#" class="text-white hover:text-indigo-300">Support</a>
-          <a href="#" class="text-white hover:text-indigo-300">Login</a>
-          <a href="cart.html" class="text-white relative hover:text-indigo-300">🛒 Cart <span id="cartCount"
-              class="ml-1 font-bold">(0)</span></a>
-        </nav>
+        <div class="flex items-center gap-3">
+          <button id="themeToggle" class="text-white text-xl focus:outline-none">
+            <i id="themeIcon" class="fas fa-moon"></i>
+          </button>
+          <button id="toggleSidebar" class="text-2xl md:hidden">☰</button>
 
-        <input type="text" id="searchInput" placeholder="Search anything"
-          class="border border-white bg-transparent text-white placeholder-white rounded px-3 py-1 text-sm w-full md:w-64"
-          oninput="searchProducts()" />
+        </div>
+      </div>
+  
+      <!-- Nav Links + Cart -->
+      <div class="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
+        <nav class="flex flex-wrap justify-center items-center gap-4 text-sm font-medium">
+          <a href="#" class="hover:text-indigo-300 transition">Home</a>
+          <a href="#" class="hover:text-indigo-300 transition">Deals</a>
+          <a href="#" class="hover:text-indigo-300 transition">Track Order</a>
+          <a href="#" class="hover:text-indigo-300 transition">Support</a>
+          <a href="#" class="hover:text-indigo-300 transition">Login</a>
+          <a href="cart.html" class="flex items-center gap-1 hover:text-indigo-300 transition">
+            <i class="fas fa-shopping-cart text-sm"></i>
+            <span>Cart</span>
+            <span id="cartCount" class="font-bold">(0)</span>
+          </a>
+        </nav>
+  
+        <div class="relative w-full md:w-64">
+          <input type="text" id="searchInput" placeholder="Search anything"
+            class="w-full rounded-md px-10 py-1.5 bg-white/10 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-indigo-400 transition">
+          <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-white text-sm"></i>
+        </div>
+        
       </div>
     </div>
   </header>
+  
 
 
-  <!--here is defined the hero section, the images in slides-->
+  <!-- Hidden element that forces Tailwind to include the class -->
+<div class="hidden translate-x-0"></div>
+
+
+<div id="mobileSidebar"
+  class="fixed left-0 top-[72px] w-64 h-[calc(100vh-72px)] z-50 bg-white dark:bg-gray-800 shadow-lg md:hidden transition-transform duration-300 transform -translate-x-full">
+  <div class="p-6">
+    <button id="closeSidebar" class="text-red-600 text-xl">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <ul class="space-y-3">
+      <li><a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition"><img src="images/dumbbell.png" class="w-6 h-6" alt="Fitness Icon">Fitness</a></li>
+      <li><a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition"><img src="images/soccer-ball.png" class="w-6 h-6" alt="Football Icon">Football</a></li>
+      <li><a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition"><img src="images/basketball.png" class="w-6 h-6" alt="Basketball Icon">Basketball</a></li>
+      <li><a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition"><img src="images/tennis.png" class="w-6 h-6" alt="Tennis Icon">Tennis</a></li>
+      <li><a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition"><img src="images/man.png" class="w-6 h-6" alt="Men Icon">Men</a></li>
+      <li><a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition"><img src="images/woman.png" class="w-6 h-6" alt="Women Icon">Women</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+  <!-- Hero Section -->
   <section class="hero-slider">
     <div class="slide active" style="background-image: url('images/allsports.png');">
       <div class="overlay"></div>
@@ -78,162 +115,123 @@
     </div>
   </section>
 
-
-  <div class="flex flex-col md:flex-row w-full">
-    <aside class="md:w-64 w-full bg-white dark:bg-gray-800 p-6 mt-8 rounded-lg shadow-lg ml-4">
+  <!-- Main Content Layout -->
+  <div class="flex flex-col md:flex-row w-full mt-8 px-4 gap-4">
+    <!-- Sidebar -->
+    <aside class="hidden md:block md:w-64 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
       <ul class="space-y-3">
-        <li>
-          <a href="#"
-            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-            <img src="images/dumbbell.png" class="w-6 h-6" alt="Fitness Icon">
-            Fitness
-          </a>
-        </li>
-        <li>
-          <a href="#"
-            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-            <img src="images/soccer-ball.png" class="w-6 h-6" alt="Football Icon">
-            Football
-          </a>
-        </li>
-        <li>
-          <a href="#"
-            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-            <img src="images/basketball.png" class="w-6 h-6" alt="Basketball Icon">
-            Basketball
-          </a>
-        </li>
-        <li>
-          <a href="#"
-            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-            <img src="images/tennis.png" class="w-6 h-6" alt="Tennis Icon">
-            Tennis
-          </a>
-        </li>
-        <li>
-          <a href="#"
-            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-            <img src="images/man.png" class="w-6 h-6" alt="Men Icon">
-            Men
-          </a>
-        </li>
-        <li>
-          <a href="#"
-            class="flex items-center gap-3 px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
-            <img src="images/woman.png" class="w-6 h-6" alt="Women Icon">
-            Women
-          </a>
-        </li>
+        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"><img src="images/dumbbell.png" class="w-6 h-6">Fitness</a></li>
+        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"><img src="images/soccer-ball.png" class="w-6 h-6">Football</a></li>
+        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"><img src="images/basketball.png" class="w-6 h-6">Basketball</a></li>
+        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"><img src="images/tennis.png" class="w-6 h-6">Tennis</a></li>
+        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"><img src="images/man.png" class="w-6 h-6">Men</a></li>
+        <li><a href="#" class="flex items-center gap-3 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"><img src="images/woman.png" class="w-6 h-6">Women</a></li>
       </ul>
     </aside>
 
-
-    <main class="flex-1 p-4">
+    <!-- Featured Products -->
+    <main class="flex-1 p-4 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
       <h2 class="text-2xl font-semibold mb-4">Featured Products</h2>
-      <div id="productGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+      <div id="productGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div class="product-card"><img src="images/yoga_mat.png" alt="Yoga Mat"><h3>Yoga Mat</h3><p>$19.99</p></div>
+        <div class="product-card"><img src="images/wearings.png" alt="Basketball"><h3>Basketball</h3><p>$29.99</p></div>
+        <div class="product-card"><img src="images/football_shoes.png" alt="Football Shoes"><h3>Football Shoes</h3><p>$49.99</p></div>
+        <div class="product-card"><img src="images/fitness gear.png" alt="Men's Running Shorts"><h3>Men's Running Shorts</h3><p>$15.99</p></div>
+        <div class="product-card"><img src="images/tennis_racket.png" alt="Tennis Racket"><h3>Tennis Racket</h3><p>$59.99</p></div>
+        <div class="product-card"><img src="images/watter_bottle.png" alt="Water Bottle"><h3>Water Bottle</h3><p>$9.99</p></div>
+        <div class="product-card"><img src="images/basic_jersey.png" alt="Jersey"><h3>Basic Jersey</h3><p>$24.99</p></div>
+      </div>
     </main>
   </div>
 
 
-  <div id="productModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
-    <div class="bg-white dark:bg-gray-900 p-6 rounded shadow max-w-md w-full relative">
-      <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">&times;</button>
-      <img id="modalImage" src="" alt="Product" class="w-full h-48 object-cover mb-4 rounded" />
-      <h3 id="modalTitle" class="text-xl font-bold"></h3>
-      <p id="modalPrice" class="text-lg text-indigo-600 mt-2"></p>
-      <p id="modalDescription" class="text-sm mt-2">Product description goes here.</p>
+  <section class="scrolling-products">
+    <h2 class="scrolling-title">Top Picks This Week</h2>
+    <div class="product-marquee">
+      <div class="product-track">
+  
+        <a href="product.html?id=yoga-mat" class="product-item">
+          <img src="images/yoga_mat.png" alt="Yoga Mat" />
+          <h4 class="product-name">Yoga Mat</h4>
+          <p class="product-price">$19.99</p>
+        </a>
+        <a href="product.html?id=basketball" class="product-item">
+          <img src="images/wearings.png" alt="Basketball" />
+          <h4 class="product-name">Basketball</h4>
+          <p class="product-price">$29.99</p>
+        </a>
+        <a href="product.html?id=football-shoes" class="product-item">
+          <img src="images/football_shoes.png" alt="Football Shoes" />
+          <h4 class="product-name">Football Shoes</h4>
+          <p class="product-price">$49.99</p>
+        </a>
+        <a href="product.html?id=mens-running-shorts" class="product-item">
+          <img src="images/fitness gear.png" alt="Men's Running Shorts" />
+          <h4 class="product-name">Men's Running Shorts</h4>
+          <p class="product-price">$15.99</p>
+        </a>
+        <a href="product.html?id=tennis-racket" class="product-item">
+          <img src="images/tennis_racket.png" alt="Tennis Racket" />
+          <h4 class="product-name">Tennis Racket</h4>
+          <p class="product-price">$59.99</p>
+        </a>
+        <a href="product.html?id=water-bottle" class="product-item">
+          <img src="images/watter_bottle.png" alt="Water Bottle" />
+          <h4 class="product-name">Water Bottle</h4>
+          <p class="product-price">$9.99</p>
+        </a>
+        <a href="product.html?id=jersey" class="product-item">
+          <img src="images/basic_jersey.png" alt="Jersey" />
+          <h4 class="product-name">Basic Jersey</h4>
+          <p class="product-price">$24.99</p>
+        </a>
+  
+        <a href="product.html?id=yoga-mat" class="product-item">
+          <img src="images/yoga_mat.png" alt="Yoga Mat" />
+          <h4 class="product-name">Yoga Mat</h4>
+          <p class="product-price">$19.99</p>
+        </a>
+        <a href="product.html?id=basketball" class="product-item">
+          <img src="images/wearings.png" alt="Basketball" />
+          <h4 class="product-name">Basketball</h4>
+          <p class="product-price">$29.99</p>
+        </a>
+        <a href="product.html?id=football-shoes" class="product-item">
+          <img src="images/football_shoes.png" alt="Football Shoes" />
+          <h4 class="product-name">Football Shoes</h4>
+          <p class="product-price">$49.99</p>
+        </a>
+        <a href="product.html?id=mens-running-shorts" class="product-item">
+          <img src="images/fitness gear.png" alt="Men's Running Shorts" />
+          <h4 class="product-name">Men's Running Shorts</h4>
+          <p class="product-price">$15.99</p>
+        </a>
+        <a href="product.html?id=water-bottle" class="product-item">
+          <img src="images/watter_bottle.png" alt="Water Bottle" />
+          <h4 class="product-name">Water Bottle</h4>
+          <p class="product-price">$9.99</p>
+        </a>
+        <a href="product.html?id=tennis-racket" class="product-item">
+          <img src="images/tennis_racket.png" alt="Tennis Racket" />
+          <h4 class="product-name">Tennis Racket</h4>
+          <p class="product-price">$59.99</p>
+        </a>
+        <a href="product.html?id=jersey" class="product-item">
+          <img src="images/basic_jersey.png" alt="Jersey" />
+          <h4 class="product-name">Basic Jersey</h4>
+          <p class="product-price">$24.99</p>
+        </a>
+  
+      </div>
     </div>
-  </div>
-<br><br>
+  </section>
 
-<section class="scrolling-products">
-  <h2 class="scrolling-title">Top Picks This Week</h2>
-  <div class="product-marquee">
-    <div class="product-track">
-
-      <a href="product.html?id=yoga-mat" class="product-item">
-        <img src="images/yoga_mat.png" alt="Yoga Mat" />
-        <h4 class="product-name">Yoga Mat</h4>
-        <p class="product-price">$19.99</p>
-      </a>
-      <a href="product.html?id=basketball" class="product-item">
-        <img src="images/wearings.png" alt="Basketball" />
-        <h4 class="product-name">Basketball</h4>
-        <p class="product-price">$29.99</p>
-      </a>
-      <a href="product.html?id=football-shoes" class="product-item">
-        <img src="images/football_shoes.png" alt="Football Shoes" />
-        <h4 class="product-name">Football Shoes</h4>
-        <p class="product-price">$49.99</p>
-      </a>
-      <a href="product.html?id=mens-running-shorts" class="product-item">
-        <img src="images/fitness gear.png" alt="Men's Running Shorts" />
-        <h4 class="product-name">Men's Running Shorts</h4>
-        <p class="product-price">$15.99</p>
-      </a>
-      <a href="product.html?id=tennis-racket" class="product-item">
-        <img src="images/tennis_racket.png" alt="Tennis Racket" />
-        <h4 class="product-name">Tennis Racket</h4>
-        <p class="product-price">$59.99</p>
-      </a>
-      <a href="product.html?id=water-bottle" class="product-item">
-        <img src="images/watter_bottle.png" alt="Water Bottle" />
-        <h4 class="product-name">Water Bottle</h4>
-        <p class="product-price">$9.99</p>
-      </a>
-      <a href="product.html?id=jersey" class="product-item">
-        <img src="images/basic_jersey.png" alt="Jersey" />
-        <h4 class="product-name">Basic Jersey</h4>
-        <p class="product-price">$24.99</p>
-      </a>
-
-      <a href="product.html?id=yoga-mat" class="product-item">
-        <img src="images/yoga_mat.png" alt="Yoga Mat" />
-        <h4 class="product-name">Yoga Mat</h4>
-        <p class="product-price">$19.99</p>
-      </a>
-      <a href="product.html?id=basketball" class="product-item">
-        <img src="images/wearings.png" alt="Basketball" />
-        <h4 class="product-name">Basketball</h4>
-        <p class="product-price">$29.99</p>
-      </a>
-      <a href="product.html?id=football-shoes" class="product-item">
-        <img src="images/football_shoes.png" alt="Football Shoes" />
-        <h4 class="product-name">Football Shoes</h4>
-        <p class="product-price">$49.99</p>
-      </a>
-      <a href="product.html?id=mens-running-shorts" class="product-item">
-        <img src="images/fitness gear.png" alt="Men's Running Shorts" />
-        <h4 class="product-name">Men's Running Shorts</h4>
-        <p class="product-price">$15.99</p>
-      </a>
-      <a href="product.html?id=water-bottle" class="product-item">
-        <img src="images/watter_bottle.png" alt="Water Bottle" />
-        <h4 class="product-name">Water Bottle</h4>
-        <p class="product-price">$9.99</p>
-      </a>
-      <a href="product.html?id=tennis-racket" class="product-item">
-        <img src="images/tennis_racket.png" alt="Tennis Racket" />
-        <h4 class="product-name">Tennis Racket</h4>
-        <p class="product-price">$59.99</p>
-      </a>
-      <a href="product.html?id=jersey" class="product-item">
-        <img src="images/basic_jersey.png" alt="Jersey" />
-        <h4 class="product-name">Basic Jersey</h4>
-        <p class="product-price">$24.99</p>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-
+  <!-- Footer -->
   <footer class="bg-gray-900 text-gray-300 py-12 mt-12">
     <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4">
       <div>
         <h4 class="font-bold text-white mb-4">About Sporti Yt</h4>
-        <p class="text-sm leading-relaxed">Sporti Yt brings you premium gear for every athlete. We help you train
-          smarter and perform better with high-quality sportswear and equipment.</p>
+        <p class="text-sm leading-relaxed">Sporti Yt brings you premium gear for every athlete. We help you train smarter and perform better.</p>
       </div>
       <div>
         <h4 class="font-bold text-white mb-4">Customer Care</h4>
@@ -246,20 +244,20 @@
       <div>
         <h4 class="font-bold text-white mb-4">Newsletter</h4>
         <p class="text-sm mb-2">Stay up to date on the latest offers.</p>
-        <input type="email" placeholder="Email address" class="w-full p-2 rounded text-gray-900" />
+        <input type="email" placeholder="Email address" class="w-full p-2 rounded text-gray-900">
         <button class="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm">Subscribe</button>
       </div>
       <div>
         <h4 class="font-bold text-white mb-4">Visit Us</h4>
-        <iframe class="w-full h-40 rounded"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.1751940282166!2d21.159185515782896!3d42.66291347916744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ee44d7b0c2d%3A0xfafad28dd4e4e2bb!2sPristina!5e0!3m2!1sen!2s!4v1614334433984!5m2!1sen!2s"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="w-full h-40 rounded" src="https://www.google.com/maps/embed?..." allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
     <div class="text-center mt-8 text-sm text-gray-500">© 2025 Sporti Yt. All rights reserved.</div>
   </footer>
 
+  <script src="script.js"></script>
+<!-- Force Tailwind to keep translate-x-0 in output -->
+<div class="hidden -translate-x-full translate-x-0"></div>
 
 </body>
-
 </html>

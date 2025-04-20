@@ -120,12 +120,7 @@ function closeModal() {
   modal.classList.remove("flex");
 }
 
-// Dark mode toggle
-const toggleBtn = document.getElementById("themeToggle");
-toggleBtn?.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  toggleBtn.textContent = document.body.classList.contains("dark") ? "Light" : "Dark";
-});
+
 
 // Cart functionality
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -192,8 +187,43 @@ function renderScrollingProducts() {
 
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  // Theme toggle
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
 
-// Initial render
-renderProducts();
-updateCartCount();
-renderScrollingProducts();
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    themeIcon.classList.remove("fa-moon");
+    themeIcon.classList.add("fa-sun");
+  }
+
+  themeToggle.addEventListener("click", () => {
+    const isDark = document.body.classList.toggle("dark");
+    themeIcon.classList.toggle("fa-moon", !isDark);
+    themeIcon.classList.toggle("fa-sun", isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+
+  // Sidebar toggle
+  const sidebar = document.getElementById("mobileSidebar");
+const toggleBtn = document.getElementById("toggleSidebar");
+const closeBtn = document.getElementById("closeSidebar");
+
+toggleBtn?.addEventListener("click", () => {
+  sidebar.classList.remove("-translate-x-full");
+  sidebar.classList.add("translate-x-0");
+});
+
+closeBtn?.addEventListener("click", () => {
+  sidebar.classList.remove("translate-x-0");
+  sidebar.classList.add("-translate-x-full");
+});
+
+
+  // Initial UI
+  renderProducts();
+  updateCartCount();
+  renderScrollingProducts();
+});
