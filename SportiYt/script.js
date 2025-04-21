@@ -141,3 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
   );
 });
 
+
+renderProducts();         
+updateCartCount();      
+renderScrollingProducts();
