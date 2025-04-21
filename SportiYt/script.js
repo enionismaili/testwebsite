@@ -97,46 +97,47 @@ function renderScrollingProducts() {
   track.innerHTML = full + full;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Initial UI
-  renderProducts();
-  updateCartCount();
-  renderScrollingProducts();
-  setInterval(showNextSlide, 5000);
+document.addEventListener('DOMContentLoaded', () => {
+  const searchToggle    = document.getElementById('searchToggle');
+  const searchContainer = document.getElementById('searchContainer');
+  const searchInput     = document.getElementById('searchInput');
 
-  // Theme toggle
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeIcon");
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-    themeIcon.classList.replace("fa-moon", "fa-sun");
-  }
-  themeToggle.addEventListener("click", () => {
-    const dark = document.body.classList.toggle("dark");
-    themeIcon.classList.replace(dark ? "fa-moon" : "fa-sun", dark ? "fa-sun" : "fa-moon");
-    localStorage.setItem("theme", dark ? "dark" : "light");
+  searchToggle.addEventListener('click', () => {
+    searchContainer.classList.toggle('hidden');
+    if (!searchContainer.classList.contains('hidden')) {
+      setTimeout(() => searchInput.focus(), 100);
+    }
   });
 
-  
-  const header = document.querySelector("header");
-  const sidebar = document.getElementById("mobileSidebar");
-  
-  sidebar.style.top = `${header.getBoundingClientRect().height}px`;
-  
-  window.addEventListener("resize", () => {
-    sidebar.style.top = `${header.getBoundingClientRect().height}px`;
-  });
+  // shared theme-toggler logic
+  const applyTheme = (dark) => {
+    document.body.classList.toggle('dark', dark);
+    const iconClass = dark ? 'fa-sun' : 'fa-moon';
+    document.querySelectorAll('#themeIcon, #mobileThemeIcon')
+            .forEach(i => i.className = 'fas ' + iconClass);
+    localStorage.setItem('darkMode', dark);
+  };
 
-  document.getElementById("toggleSidebar").addEventListener("click", () => {
-    sidebar.classList.remove("-translate-x-full");
-    sidebar.classList.add("translate-x-0");
-  });
-  
-  document.getElementById("closeSidebar").addEventListener("click", () => {
-    sidebar.classList.remove("translate-x-0");
-    sidebar.classList.add("-translate-x-full");
-  });
-  
-  
+  // initial state
+  const stored = localStorage.getItem('darkMode') === 'true';
+  applyTheme(stored);
 
+  // top bar
+  document.getElementById('themeToggle')?.addEventListener('click', () =>
+    applyTheme(!document.body.classList.contains('dark'))
+  );
+
+  // mobile sidebar toggle
+  document.getElementById('mobileThemeToggle')
+          .addEventListener('click', () =>
+    applyTheme(!document.body.classList.contains('dark'))
+  );
+
+
+  document.getElementById('toggleSidebar')
+          .addEventListener('click', () =>
+    document.getElementById('mobileSidebar')
+            .classList.toggle('scale-y-0')
+  );
 });
+
